@@ -1,26 +1,75 @@
-@import "tailwindcss";
+.terminal-container {
+  background-color: #1e1e1e;
+  color: #d4d4d4;
+  font-family: 'SF Mono', 'Menlo', 'Consolas', monospace;
+  min-height: 100vh;
+  padding: 2rem;
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+.terminal-content {
+  max-width: 800px;
+  margin: 0 auto;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+.terminal-list {
+  list-style: none;
+  counter-reset: line-number;
+  padding-left: 0;
+  margin: 0;
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+.terminal-item {
+  display: flex;
+  align-items: center;
+  padding: 0.5rem 1rem;
+  margin: 0.25rem 0;
+  border-radius: 4px;
+  transition: all 0.3s ease;
+  position: relative;
+}
+
+.terminal-item:hover {
+  background-color: #2a2d2e;
+}
+
+.line-number {
+  color: #4ec9b0;
+  min-width: 2.5rem;
+  font-weight: bold;
+  transition: all 0.3s ease;
+}
+
+.line-number::before {
+  content: counter(line-number) ".";
+  counter-increment: line-number;
+}
+
+.end-line {
+  position: absolute;
+  right: 1rem;
+  color: #7CC94E;
+  font-weight: bold;
+  transition: all 0.3s ease;
+}
+
+.line-content {
+  flex-grow: 1;
+  padding-left: 0.5rem;
+  border-left: 1px solid #333;
+  margin-left: 0.5rem;
+  padding-right: 5rem;
+  white-space: pre;
+}
+
+.terminal-item:hover .line-number,
+.terminal-item:hover .end-line {
+  color: #ffffff;
+  text-shadow: 
+    0 0 5px #ffffff,
+    0 0 10px #7CC94E,
+    0 0 15px #7CC94E;
 }
